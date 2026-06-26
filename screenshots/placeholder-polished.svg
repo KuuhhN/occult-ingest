@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="280" viewBox="0 0 400 280">
+  <rect width="400" height="280" fill="#1a1a2e"/>
+  <rect x="30" y="20" width="340" height="30" rx="4" fill="#2a2a4e"/>
+  <text x="200" y="40" font-family="sans-serif" font-size="12" fill="#4a8" text-anchor="middle">《炼金术》精排版</text>
+  <text x="40" y="75" font-family="serif" font-size="18" fill="#e0b354" font-weight="bold"># 第一章 历史与传说之间</text>
+  <text x="40" y="105" font-family="sans-serif" font-size="12" fill="#aaa">炼金术的历史可以追溯到古希腊时期……</text>
+  <text x="40" y="125" font-family="sans-serif" font-size="12" fill="#aaa">亚里士多德的四元素说为炼金术提供了</text>
+  <text x="40" y="145" font-family="sans-serif" font-size="12" fill="#aaa">理论基础。火、水、土、气四种元素……</text>
+  <text x="200" y="190" font-family="sans-serif" font-size="13" fill="#666" text-anchor="middle">[ 精排版 Markdown 效果截图 ]</text>
+  <text x="200" y="210" font-family="sans-serif" font-size="11" fill="#555" text-anchor="middle">替换为实际格式化后的笔记截图</text>
+</svg>
