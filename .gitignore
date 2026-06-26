@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+_ocr_tmp_*.png
+.env
+.env.local
