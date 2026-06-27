@@ -51,10 +51,10 @@ def ocr_pdf(pdf_path: str, title: str, author: str = "", vault_path: str | None 
             with open(img_path, 'rb') as f:
                 img_base64 = base64.b64encode(f.read()).decode()
             
-            req = models.GeneralBasicOCRRequest()
+            req = models.GeneralFastOCRRequest()
             req.ImageBase64 = img_base64
-            req.LanguageType = 'zh'
-            resp = client.GeneralBasicOCR(req)
+            # Fallback chain: Fast → Accurate → Efficient → Basic
+            resp = client.GeneralFastOCR(req)
             data = json.loads(resp.to_json_string())
             texts = [item['DetectedText'] for item in data.get('TextDetections', [])]
             
