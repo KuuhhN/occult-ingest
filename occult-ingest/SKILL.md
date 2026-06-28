@@ -1,12 +1,12 @@
 ---
 name: occult-ingest
-description: 神秘学 PDF 资料入库全流程——OCR 提取 → 原文 → 精排版格式化 → 生成导读/摘要目录/精读笔记。用户发送 PDF 或说「入库」「处理这份资料」时触发。
+description: 神秘学 PDF 资料入库全流程——OCR 提取 → 原文 → 生成导读/摘要目录/精读笔记。用户发送 PDF 或说「入库」「处理这份资料」时触发。
 runAs: inline
 ---
 
 # 神秘学 PDF 入库流程（整合版）
 
-本 Skill 整合了 **OCR 提取** 与 **精排版格式化** 两个阶段，将 PDF 转化为结构化笔记。
+本 Skill 整合了 **OCR 提取** 与 **AI 精读** 两个阶段，将 PDF 转化为结构化笔记。
 
 ---
 
@@ -15,14 +15,13 @@ runAs: inline
 
 ---
 
-## 完整流程（6 步）
+## 完整流程（5 步）
 
 ### 第 1 步：环境检查
 确认以下依赖可用（缺了就装）：
 - `pdfplumber` — PDF 页面提取
 - `tencentcloud-sdk-python-ocr` — 腾讯云 OCR
 - `pymupdf` (fitz) — 读取 PDF 页面标签元数据
-- `pangu` — 中英文间距规范化
 - 腾讯云 SecretId / SecretKey（向用户索要，用环境变量传递，**绝不写入文件**）
 
 ### 第 2 步：OCR 提取原文
@@ -38,29 +37,12 @@ python .reasonix/skills/occult-ingest/ocr_extract.py "<pdf路径>" "<书名>" "<
 - 格式：`## 第X页` 分页 + 原始 OCR 文本
 - 🔒 只写一次，永不覆盖
 
-### 第 3 步：精排版格式化
-```bash
-python .reasonix/skills/occult-ingest/format_ocr.py \
-    "02-文献库/经典文献/<书名>_原文.md" \
-    "02-文献库/经典文献/<书名>_精排版.md" \
-    --title "《<书名>》" \
-    --meta "<作者> 编著 | <出版社> | <出版信息>" \
-    --headers "第一章 xxx,第二章 xxx,第三章 xxx,第四章 xxx" \
-    --raw-page-link "<书名>_原文"
-```
-
-- 去除版权页、CIP、ISBN 等元数据
-- 去除印刷页眉（每页重复的章节标题）
-- 智能合并跨页断句
-- 标题 Markdown 化（`#` / `##`）
-- pangu 中英文间距规范化
-
-### 第 4 步：复制 PDF 到 Vault
+### 第 3 步：复制 PDF 到 Vault
 ```bash
 cp "<原始PDF路径>" "occult-vault/02-文献库/经典文献/<书名>.pdf"
 ```
 
-### 第 5 步：读取 PDF 页面标签
+### 第 4 步：读取 PDF 页面标签
 ```python
 import fitz
 doc = fitz.open("<pdf路径>")
@@ -69,11 +51,11 @@ labels = doc.get_page_labels()
 获取 Obsidian 中显示的页码方案（如封面 A-H、前言 i-ii、正文 1-247）。
 所有笔记中统一使用该标签方案引用页码。
 
-### 第 6 步：AI 精读 + 生成三份笔记
+### 第 5 步：AI 精读 + 生成三份笔记
 
 ⚠️ **必须精读原文再写笔记，不得跳过阅读直接套模板。** 质量检验：每份笔记必须包含原文中的具体引述或案例作为证据。
 
-#### 6a. 导读（`03-导读/<书名>_导读.md`）
+#### 5a. 导读（`03-导读/<书名>_导读.md`）
 - 📌 一句话总结
 - 🎯 核心要点（5-8 条）
 - 🗺️ 知识背景（所属体系、难度等级）
@@ -83,34 +65,33 @@ labels = doc.get_page_labels()
 - 📕 PDF 链接
 - **末尾必须加导航链接**：→ [[摘要目录]] → [[精读笔记]]
 
-#### 6b. 摘要目录（`05-摘要/<书名>_摘要目录.md`）
+#### 5b. 摘要目录（`05-摘要/<书名>_摘要目录.md`）
 - 按章→节分层
 - 每节：页码范围 + 一段话概括（3-5 句）
 - 📕 PDF 链接
 - **末尾必须加导航链接**：→ [[精读笔记]] → [[.pdf|PDF]]
 
-#### 6c. 精读笔记（`06-笔记/<书名>_精读笔记.md`）
+#### 5c. 精读笔记（`06-笔记/<书名>_精读笔记.md`）
 - 保留原文 ~50% 信息量
 - **每个二级标题必须标注页码范围**
 - 📕 PDF 链接
 
-### 第 7 步：更新知识条目
+### 第 6 步：更新知识条目
 在 `01-知识库/<体系>/` 下创建或更新对应条目，链接导读、摘要目录、精读笔记、原文、PDF。
 
-### 第 8 步：记录日志
+### 第 7 步：记录日志
 在 `04-日志/` 创建或更新当日日志（格式 `YYYY-MM-DD.md`）。每次入库追加到当日日志中，同一天多份资料汇总在同一文件。
 
 ---
 
 ## 页码规范
-- **所有页码使用 Obsidian PDF 标签**（从第 5 步读取）
+- **所有页码使用 Obsidian PDF 标签**（从第 4 步读取）
 - 格式示例：`（i–ii）`、`（1–60）`
 - 不混用 PDF 物理页码或印刷页码
 
 ## 文件命名规范
 ```
 02-文献库/经典文献/<书名>_原文.md
-02-文献库/经典文献/<书名>_精排版.md
 02-文献库/经典文献/<书名>.pdf
 03-导读/<书名>_导读.md
 05-摘要/<书名>_摘要目录.md
@@ -121,7 +102,7 @@ labels = doc.get_page_labels()
 ```
 00-MOC/      总览索引
 01-知识库/   知识条目（按体系分子目录）
-02-文献库/   原文 PDF + OCR 原文 + 精排版
+02-文献库/   原文 PDF + OCR 原文
 03-导读/     快速入门导读
 04-日志/     每日学习记录
 05-摘要/     分层摘要目录
@@ -139,7 +120,7 @@ labels = doc.get_page_labels()
 本工具已做通用化处理：
 - **路径**：通过 `--vault` 参数或 `OCCULT_VAULT_PATH` 环境变量配置知识库根目录
 - **书名/作者/出版社**：全部作为 CLI 参数传入，无硬编码
-- **印刷页眉**：通过 `--headers` 参数传入，适应不同书籍
+- **印刷页眉**：通过 `--headers` 参数传入，适应不同书籍（已废弃，精排版步骤已移除）
 - **API 密钥**：通过环境变量传递，**绝不写入文件**
 
 ### 提交到 GitHub
@@ -148,7 +129,7 @@ labels = doc.get_page_labels()
 # 在项目根目录执行
 git init
 git add .
-git commit -m "feat: init occult-ingest skill - OCR + formatting pipeline"
+git commit -m "feat: init occult-ingest skill - OCR + AI notes pipeline"
 git remote add origin https://github.com/KuuhhN/WangYue.git
 git push -u origin main
 ```
