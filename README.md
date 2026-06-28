@@ -1,12 +1,12 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="screenshots/hero-dark.svg">
-    <img src="screenshots/hero-light.svg" alt="Occult Ingest" width="600">
+    <img src="screenshots/hero-light.svg" alt="贤者之石" width="600">
   </picture>
 </p>
 
 <p align="center">
-  <strong>OCR 提取 → 精排版格式化 → AI 笔记生成 → Obsidian 知识网络</strong>
+  <strong>贤者之石 — 神秘学 PDF → Obsidian 知识网络</strong>
 </p>
 
 <p align="center">
@@ -16,9 +16,9 @@
 </p>
 
 <p align="center">
-  <i>把神秘学 PDF 变成一张互联的知识网络。</i>
+  <i>PDF 丢进去，知识炼出来。</i>
   <br>
-  从扫描件到结构化笔记，从单本书到跨体系的知识图谱 —— 一步到位。
+  把扫描版神秘学文献变成互联的 Obsidian 知识库——这就是贤者之石。
 </p>
 
 ---
@@ -153,19 +153,31 @@
 每本书自动关联到对应的知识体系，最终汇聚到 **MOC（内容地图）**：
 
 ```
-┌─ 神秘学总览 ─────────────────────────────┐
-│                                           │
-│  🜁 炼金术  ←── 《炼金术》（徐德伟）      │
-│            ←── Splendor Solis             │
-│            ←── Herbal Alchemist           │
-│                                           │
-│  🜃 赫尔墨斯主义 ←── 翠玉录 / 凯巴莱恩     │
-│                                           │
-│  🝞 魔法实践 ←── 英灵魔法                  │
-│                                           │
-│  ☽ 灵修与冥想 ←── 《灵性炼金术》           │
-│                                           │
-└───────────────────────────────────────────┘
+┌─ 神秘学总览 (当前 ~15 本书) ─────────────────┐
+│                                                 │
+│  🜁 炼金术 (7) ← 《炼金术》徐德伟               │
+│               ← Splendor Solis                  │
+│               ← Real Alchemy                    │
+│               ← Herbal Alchemist                │
+│               ← 炼金术概论                      │
+│               ← Manly Hall 炼金术手稿合集       │
+│                                                 │
+│  🝞 魔法实践 (3) ← PGM 希腊魔法纸莎草           │
+│                 ← 英灵魔法                      │
+│                                                 │
+│  🜃 赫尔墨斯主义 ← 阿斯克勒庇俄斯               │
+│                                                 │
+│  🗲 占星学 ← 占星术教程                         │
+│                                                 │
+│  ☆ 塔罗与卡巴拉 ← 塔罗冥想                      │
+│                                                 │
+│  ☽ 灵修与冥想 ← 《灵性炼金术》                  │
+│                                                 │
+│  🏛️ 希腊宗教 ← 古代希腊仪式文化研究            │
+│                                                 │
+│  卡巴拉 · 威卡 · 神话学 · 符号学 ← 待填充       │
+│                                                 │
+└─────────────────────────────────────────────────┘
 ```
 
 ---

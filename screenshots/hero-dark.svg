@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
   <rect width="600" height="200" fill="#1a1a2e"/>
-  <text x="300" y="80" font-family="serif" font-size="36" fill="#e0b354" text-anchor="middle" font-weight="bold">⚗️ Occult Ingest</text>
-  <text x="300" y="120" font-family="sans-serif" font-size="14" fill="#888" text-anchor="middle">PDF → OCR → 精排版 → AI 笔记 → Obsidian 知识库</text>
-  <text x="300" y="160" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">▲ 替换此图为你的 Logo / 品牌图</text>
+  <circle cx="300" cy="70" r="24" fill="none" stroke="#e0b354" stroke-width="2.5"/>
+  <polygon points="290,58 310,58 316,72 300,82 284,72" fill="#e0b354" opacity="0.7"/>
+  <text x="300" y="130" font-family="serif" font-size="32" fill="#e0b354" text-anchor="middle" font-weight="bold">⚗️ 贤者之石</text>
+  <text x="300" y="158" font-family="sans-serif" font-size="13" fill="#888" text-anchor="middle">Philosopher's Stone · 神秘学 PDF → Obsidian 知识网络</text>
 </svg>
