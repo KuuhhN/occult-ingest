@@ -286,6 +286,10 @@ occult-vault/
 
 MIT License — 随便用，随便改，随便造。
 
+## 📋 更新日志
+
+所有版本变更记录在 [CHANGELOG.md](./CHANGELOG.md)。
+
 ## 🙏 致谢
 
 - [腾讯云 OCR](https://console.cloud.tencent.com/ocr) — 中文 OCR 识别
