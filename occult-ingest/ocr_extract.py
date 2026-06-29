@@ -117,9 +117,8 @@ def ocr_pdf(pdf_path: str, title: str, author: str = "", vault_path: str | None 
     pdf.close()
 
     safe_title = sanitize_filename(title)
-    safe_author = sanitize_filename(author) if author else ''
-    safe_meta = f'{safe_author} 编著' if safe_author else ''
-    raw = f'# 《{title}》OCR 原文（腾讯云，未经排版）\n\n> {safe_meta}\n\n'
+    meta = f'{author} 编著' if author else ''
+    raw = f'# 《{title}》OCR 原文（腾讯云，未经排版）\n\n> {meta}\n\n'
     raw += '\n\n'.join(all_pages)
 
     out_dir = os.path.join(vault, '02-文献库', '经典文献')
