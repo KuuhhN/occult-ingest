@@ -28,7 +28,7 @@ runAs: inline
 ```bash
 export TENCENT_SECRET_ID="xxx"
 export TENCENT_SECRET_KEY="xxx"
-python .reasonix/skills/occult-ingest/ocr_extract.py "<pdf路径>" "<书名>" "<作者>"
+python occult-ingest/ocr_extract.py "<pdf路径>" "<书名>" "<作者>"
 ```
 
 支持 `--vault` 参数指定知识库根目录，或通过 `OCCULT_VAULT_PATH` 环境变量设置。
@@ -168,7 +168,7 @@ type: 七种类型之一
 git init
 git add .
 git commit -m "feat: init occult-ingest skill - OCR + AI notes pipeline"
-git remote add origin https://github.com/KuuhhN/WangYue.git
+git remote add origin https://github.com/KuuhhN/occult-ingest.git
 git push -u origin main
 ```
 
